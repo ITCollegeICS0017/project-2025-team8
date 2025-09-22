@@ -3,7 +3,7 @@
 # Student Project Template 
 Parking lot management
 - Ilja Priimak - wwqeew (github login)
-- Timofei Dashkevich
+- Timofei Dashkevich - Tsuki9 (github login)
 ## Build & Run
 ## Release workflow
 - We keep ONE repository for the whole project.
