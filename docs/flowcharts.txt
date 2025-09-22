@@ -1,0 +1,58 @@
+Exchange Store — CP1 Flowcharts (ASCII)
+
+SCENARIO A: Client asks to convert an amount
+--------------------------------------------
+[Start]
+   |
+   v
+[Show Menu] --> (User selects "Convert")
+   |
+   v
+[Prompt FROM currency] --> [Validate?] --no--> [Re-prompt]
+   Exchange Store — CP1 Flowcharts (ASCII)
+
+   Overview:
+   This program is a simple, menu-driven currency exchange simulation. The main flows are:
+
+   1) Perform an exchange
+      [Start]
+        |
+        v
+      [Show Menu] --(select Convert)--> [Prompt: FROM currency]
+        |
+        v
+      [Validate selection] --no--> [Re-prompt]
+        |
+        v
+      [Prompt: TO currency] --> [Validate selection]
+        |
+        v
+      [Prompt: Amount] --> [Validate amount]
+        |
+        v
+      [Compute exchange using current rates]
+        |
+        v
+      [Display result, optionally produce receipt and log to CSV] --> [Back to Menu]
+
+   2) Show rates
+      [Show Menu] --(select Show rates)--> [Print current rates table] --> [Back to Menu]
+
+   3) Management (set rates / adjust reserves / critical minimums)
+      [Show Menu] --(select Management options)--> [Prompt for manager actions] --> [Update in-memory state]
+
+   4) End-of-day report
+      [Show Menu] --(select End-of-day report)--> [Read daily CSV file] --> [Summarize total transactions and profit] --> [Back to Menu]
+
+   5) Help / About
+      [Show Menu] --(select Help)--> [Print program information, instructions, and file locations] --> [Back to Menu]
+
+   6) Additional utilities
+      - Add manual transaction (append to CSV)
+      - List transactions for a date (print CSV lines)
+      - Search transaction by ID (search CSV for tx_id column)
+
+   Notes:
+    - The program maintains daily CSV files named sales_YYYY-MM-DD.csv and receipts_YYYY-MM-DD.txt
+    - CSV parsing supports both legacy rows (no tx_id) and new rows (with tx_id). Searching by tx_id works only when tx_id is present in the CSV.
+    - The Makefile contains convenient targets: build (default), run, test, install, clean.

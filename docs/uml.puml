@@ -1,0 +1,88 @@
+@startuml
+title Currency Exchange System - Class Diagram
+
+skinparam classAttributeIconSize 0
+
+package "Domain" {
+  class Transaction {
+    +int id
+    +char date[11]
+    +char time[9]
+    +int from
+    +int to
+    +double amt_from
+    +double amt_to
+    +double rate_from_loc
+    +double rate_to_loc
+    +int partial
+    +double remainder_loc_for_client
+    +double profit_delta_loc
+  }
+
+  class Currency {
+    +char name[MAX_NAME]
+    +int d_count
+    +int* denoms
+    +double start_bal
+    +double bal
+    +double critical_min
+    +double buy_to_loc
+    +double sell_to_loc
+  }
+}
+
+package "Services" {
+  class CurrencyManager {
+    +convert_via_local(from:int, to:int, amount_from:double, rate_from_loc:*double, rate_to_loc:*double, profit_delta_loc:*double) : double
+    +check_criticals() : void
+  }
+}
+
+package "Infrastructure" {
+  class Utils <<module>> {
+    +init_defaults()
+    +ask_int(prompt:char*, min:int, max:int) : int
+    +ask_double(prompt:char*, min:double, max:double) : double
+    +clear_input() : void
+    +make_daily_csv_name(date_text:char*, out:char*, cap:size_t) : void
+    +generate_receipt(t:Transaction, date_text:char*) : void
+    +generate_daily_summary(date_text:char*) : void
+    +csv_sum_profit_for_date(date_text:char*, tx_count_out:*int) : double
+    +ensure_csv_header(f:FILE*) : void
+    +csv_log_transaction(date_text:char*, tx_id:int, from:int, to:int, amt_from:double, amt_to:double, rate_from_loc:double, rate_to_loc:double, partial:int, remainder_loc_for_client:double, profit_delta_loc:double) : void
+    +csv_list_transactions_for_date(date_text:char*) : int
+    +csv_find_transaction_by_id(date_text:char*, tx_id:int) : int
+    +csv_append_manual_transaction(date_text:char*, tx_id:int, time_text:char*, from_code:char*, to_code:char*, amt_from:double, amt_to:double, rate_from_loc:double, rate_to_loc:double, partial:int, remainder_loc:double, profit_loc_delta:double) : int
+    +save_last_tx_id(id:int) : void
+    +load_last_tx_id() : int
+    +shutdown() : void
+    --
+    +CUR_NAME : const char* [MAX_CUR]
+    +DENOMS : const int* [MAX_CUR]
+    +D_COUNT : const int [MAX_CUR]
+    +DENOMS_LOC : const int[]
+    +DENOMS_USD : const int[]
+    +DENOMS_EUR : const int[]
+    +DENOMS_GBP : const int[]
+    +DENOMS_JPY : const int[]
+    +currencies : std::vector<Currency>
+    +profit_loc : double
+    +current_date : char[64]
+    +last_transaction_id : int
+  }
+}
+
+package "Application" {
+  class Main <<program>> {
+    +main(argc:int, argv:char**): int
+  }
+}
+
+' Relationships
+CurrencyManager --> Currency : uses rates/balances
+Utils --> Currency : defines globals
+Utils --> Transaction : logging & receipts
+Main ..> CurrencyManager : composition (uses)
+Main ..> Utils : calls functions & uses globals
+
+@enduml

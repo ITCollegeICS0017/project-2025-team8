@@ -1,21 +1,22 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -Werror -std=c11
-SRC=$(wildcard src/*.c)
-OBJ=$(SRC:.c=.o)
-BIN=app
+CXX := g++
+CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -I.
+SRCS := main.cpp utils.cpp currency_manager.cpp
+OBJDIR := build
+OBJS := $(SRCS:%.cpp=$(OBJDIR)/%.o)
+TARGET := $(OBJDIR)/exchange_store_cp1
 
-.PHONY: all run test clean
+all: $(TARGET)
 
-all: $(BIN)
+$(TARGET): $(OBJS) | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
-$(BIN): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+$(OBJDIR)/%.o: %.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-run: $(BIN)
-	./$(BIN)
-
-test: $(BIN) tests/test_basic.sh
-	bash tests/test_basic.sh
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
 clean:
-	rm -f $(BIN) src/*.o
+	rm -rf $(OBJDIR)
+
+.PHONY: all clean

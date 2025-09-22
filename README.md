@@ -1,26 +1,27 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Unv3Nbtc)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=20645176&assignment_repo_type=AssignmentRepo)
-# Student Project Template 
-Parking lot management
-- Ilja Priimak - wwqeew (github login)
-- Timofei Dashkevich
-## Build & Run
-## Release workflow
-- We keep ONE repository for the whole project.
-- At the end of each checkpoint, mark a release tag and add your report.
+# fund-of-cpp-taltech25
 
-### Mark a release tag
-###  end of Release 1:
-git tag release-1
-git push origin release-1
+Run instructions
+----------------
 
-###  end of Release 2:
-git tag release-2
-git push origin release-2
+Build and run the project:
 
-### Folders for documents
-docs/release-1/  # slides, SRS/SDP updates, test report
+```bash
+make
+./build/exchange_store_cp1
+```
 
-docs/release-2/
+Or run the provided tests:
 
-docs/release-3/
+```bash
+bash tests/test_runner.sh
+```
+
+Week 1 deliverables
+-------------------
+
+Small demo and documentation for week 1 check are under `week1/` and `docs/`:
+
+ - `week1/demo.cpp` - small demo program compiling to `week1/demo`
+ - `docs/problem_statement_week1.md` - problem statement
+ - `docs/crc_week1.md` - candidate classes / CRC draft
+ - `docs/uml_week1.puml` - PlantUML for conceptual class diagram
