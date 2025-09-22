@@ -4,6 +4,7 @@
 Parking lot management
 - Ilja Priimak - wwqeew (github login)
 - Timofei Dashkevich - Tsuki-9 (github login)
+- Kuzey Arda Bulut - kuzeyardabulut (github login)
 ## Build & Run
 ## Release workflow
 - We keep ONE repository for the whole project.
