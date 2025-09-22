@@ -2,8 +2,8 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=20645176&assignment_repo_type=AssignmentRepo)
 # Student Project Template 
 Parking lot management
-Ilja Priimak - wwqeew (github login)
-Timofei Dashkevich
+- Ilja Priimak - wwqeew (github login)
+- Timofei Dashkevich
 ## Build & Run
 ## Release workflow
 - We keep ONE repository for the whole project.
